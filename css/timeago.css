@@ -1,21 +1,19 @@
-/* 
- timeago output is dynamic, which breaks when you print a page.
+/*
+  timeago output is dynamic, which breaks when you print a page.
 
- This CSS is only included when type: timeago 
- and ensures fallback to type "iso_date" when printing.
- 
- */
+  This CSS is only included when type: timeago
+  and ensures fallback to type "iso_date" when printing.
+
+*/
 
 .git-revision-date-localized-plugin-iso_date { display: none }
 
 @media print {
-    .git-revision-date-localized-plugin-iso_date { display: inline } 
-    .git-revision-date-localized-plugin-timeago { display: none } 
+    .git-revision-date-localized-plugin-iso_date { display: inline }
+    .git-revision-date-localized-plugin-timeago { display: none }
 }
 
-
 /* Fix: links wit in donkere modus */
-[data-md-color-scheme=slate] a,
 [data-md-color-scheme=slate] .md-nav__link,
 [data-md-color-scheme=slate] .md-nav__item--active > .md-nav__link,
 [data-md-color-scheme=slate] .md-tabs__link {
@@ -23,4 +21,18 @@
 }
 body.darkmode a {
   color: #ffffff !important;
+}
+
+/* Fix: linker navigatiebalk heeft witte achtergrond - tekst zichtbaar maken */
+[data-md-color-scheme=slate] .md-nav--primary .md-nav__link {
+  color: #ffffff !important;
+}
+
+/* Fix: witte balk links - verberg de witte achtergrond van de navigatie titel */
+.md-nav[aria-label="Navigatie"] {
+  background: transparent !important;
+}
+.md-nav[aria-label="Navigatie"] .md-nav__title {
+  background: transparent !important;
+  color: inherit !important;
 }
