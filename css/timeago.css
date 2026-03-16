@@ -13,3 +13,14 @@
     .git-revision-date-localized-plugin-timeago { display: none } 
 }
 
+
+/* Fix: links wit in donkere modus */
+[data-md-color-scheme=slate] a,
+[data-md-color-scheme=slate] .md-nav__link,
+[data-md-color-scheme=slate] .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme=slate] .md-tabs__link {
+  color: #ffffff !important;
+}
+body.darkmode a {
+  color: #ffffff !important;
+}
