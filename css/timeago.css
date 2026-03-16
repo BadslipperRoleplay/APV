@@ -20,23 +20,12 @@
   color: #ffffff !important;
 }
 
-/* Fix: witte balk links - ALLE mogelijke selectors */
-.md-nav__title,
-.md-nav[aria-label="Navigatie"],
-.md-nav[aria-label="Navigatie"] .md-nav__title,
-.md-nav[aria-label="Navigatie"] label,
-.md-sidebar--primary .md-nav__title,
-.md-sidebar--primary,
-.md-sidebar__scrollwrap,
-.md-sidebar__inner {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
+/* Fix: witte balk links - overschrijf de CSS custom property voor de sidebar */
+.md-sidebar--primary {
+  --md-default-bg-color: transparent;
 }
 
-/* Fix: tekst van de navigatie balk leesbaar maken */
-.md-nav[aria-label="Navigatie"] .md-nav__link,
-.md-nav[aria-label="Navigatie"] .md-nav__title,
-.md-sidebar--primary .md-nav__title {
+/* Fix: tekst in de witte balk leesbaar maken */
+.md-nav[aria-label="Navigatie"] .md-nav__link {
   color: var(--md-typeset-color) !important;
 }
