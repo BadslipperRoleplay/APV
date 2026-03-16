@@ -1,12 +1,37 @@
 [
   {
+    "title": "Home",
+    "url": "index.html",
+    "content": "Welkom op de pagina voor de Wet- en Regelgeving van Badslipper."
+  },
+  {
+    "title": "Informatie",
+    "url": "informatie/index.html",
+    "content": "Algemene informatie over Badslipper Roleplay."
+  },
+  {
     "title": "Algemene Plaatselijke Verordening",
-    "url": "/apv/index.html",
-    "content": "Regels en wetten van Badslipper."
+    "url": "apv/index.html",
+    "content": "Regels en wetten van Badslipper. De APV bevat alle server regels."
   },
   {
     "title": "Wetboek PC",
-    "url": "/wetboek/index.html",
-    "content": "Overzicht van het wetboek."
+    "url": "wetboek/index.html",
+    "content": "Overzicht van het wetboek van Badslipper. Alle wetten voor de burgers."
+  },
+  {
+    "title": "Onderwereld Regels",
+    "url": "onderwereldregels/index.html",
+    "content": "Regels voor de onderwereld van Badslipper Roleplay."
+  },
+  {
+    "title": "Hulpdiensten Regels",
+    "url": "hulpdienstenregels/index.html",
+    "content": "Regels voor de hulpdiensten van Badslipper Roleplay."
+  },
+  {
+    "title": "Risicogebieden",
+    "url": "risicogebieden/index.html",
+    "content": "Overzicht van de risicogebieden binnen Badslipper Roleplay."
   }
 ]
