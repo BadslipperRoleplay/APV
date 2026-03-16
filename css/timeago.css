@@ -19,20 +19,21 @@
 [data-md-color-scheme=slate] .md-tabs__link {
   color: #ffffff !important;
 }
-body.darkmode a {
-  color: #ffffff !important;
+
+/* Fix: witte balk links - maak achtergrond transparant en tekst zichtbaar */
+.md-nav__title,
+.md-nav[aria-label="Navigatie"],
+.md-nav[aria-label="Navigatie"] .md-nav__title,
+.md-nav[aria-label="Navigatie"] label,
+.md-sidebar--primary .md-nav__title {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
-/* Fix: linker navigatiebalk heeft witte achtergrond - tekst zichtbaar maken */
-[data-md-color-scheme=slate] .md-nav--primary .md-nav__link {
-  color: #ffffff !important;
-}
-
-/* Fix: witte balk links - verberg de witte achtergrond van de navigatie titel */
-.md-nav[aria-label="Navigatie"] {
-  background: transparent !important;
-}
-.md-nav[aria-label="Navigatie"] .md-nav__title {
-  background: transparent !important;
-  color: inherit !important;
+/* Fix: tekst van de witte balk leesbaar maken */
+.md-nav[aria-label="Navigatie"] .md-nav__link,
+.md-nav[aria-label="Navigatie"] .md-nav__title,
+.md-sidebar--primary .md-nav__title {
+  color: var(--md-typeset-color) !important;
 }
