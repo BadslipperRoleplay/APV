@@ -2,7 +2,7 @@
   timeago output is dynamic, which breaks when you print a page.
 
   This CSS is only included when type: timeago
-  and ensures fallback to type "iso_date" when printing.
+  and ensures fallback to type: iso_date when printing.
 
 */
 
@@ -13,19 +13,17 @@
     .git-revision-date-localized-plugin-timeago { display: none }
 }
 
+/* Fix: header title tekst wit maken (overschrijft inline color: #222) */
+.md-header__title,
+.md-header__topic,
+.md-header__topic:first-child,
+.md-ellipsis {
+  color: #ffffff !important;
+}
+
 /* Fix: links wit in donkere modus */
 [data-md-color-scheme=slate] .md-nav__link,
 [data-md-color-scheme=slate] .md-nav__item--active > .md-nav__link,
 [data-md-color-scheme=slate] .md-tabs__link {
   color: #ffffff !important;
-}
-
-/* Fix: witte balk links - overschrijf de CSS custom property voor de sidebar */
-.md-sidebar--primary {
-  --md-default-bg-color: transparent;
-}
-
-/* Fix: tekst in de witte balk leesbaar maken */
-.md-nav[aria-label="Navigatie"] .md-nav__link {
-  color: var(--md-typeset-color) !important;
 }
