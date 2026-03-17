@@ -4,7 +4,7 @@
   
 <!-- Mirrored from Badslipper.github.io/apv/apv/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Jun 2024 20:34:59 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>   <style>   .md-header, .md-header__inner, .md-header__option, .md-tabs__list, .md-tabs, .md-header__title {     background: #C8A96E !important;     color: #222 !important;   }   </style>
+<head>   <style>   .md-header, .md-header__inner, .md-header__option, .md-tabs__list, .md-tabs, .md-header__title {     background: #C8A96E !important;     color: #fff !important;   }   </style>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -2924,6 +2924,40 @@ Als je refund hier niet aan voldoet, staat een stafflid in zijn/haar recht om je
         <script src="../../../cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
       
         <script src="../javascripts/tables.js"></script>
+        <script>
+(function(){
+  var searchDocs=[];
+  fetch('../search/search_index.json').then(function(r){return r.json();}).then(function(data){
+    searchDocs=data.docs||[];
+    var meta=document.querySelector('.md-search-result__meta');
+    if(meta)meta.textContent='Typ om te zoeken';
+  }).catch(function(){});
+  document.addEventListener('DOMContentLoaded',function(){
+    var input=document.querySelector('.md-search__input');
+    var list=document.querySelector('.md-search-result__list');
+    var meta=document.querySelector('.md-search-result__meta');
+    if(!input||!list)return;
+    input.addEventListener('input',function(){
+      var q=(input.value||'').toLowerCase().trim();
+      list.innerHTML='';
+      if(!q){if(meta)meta.textContent='Typ om te zoeken';return;}
+      var results=searchDocs.filter(function(d){
+        return (d.title&&d.title.toLowerCase().indexOf(q)>=0)||(d.text&&d.text.toLowerCase().indexOf(q)>=0);
+      }).slice(0,10);
+      if(meta)meta.textContent=results.length+' resultaten';
+      results.forEach(function(d){
+        var li=document.createElement('li');
+        li.className='md-search-result__item';
+        var snip='';
+        if(d.text){var idx=d.text.toLowerCase().indexOf(q);snip=d.text.substring(Math.max(0,idx-50),idx+100).replace(/</g,'&lt;');}
+        li.innerHTML='<a href="../'+d.location+'" class="md-search-result__link" tabindex="-1"><article class="md-search-result__article md-typeset"><h1 class="md-search-result__title">'+d.title+'</h1>'+(snip?'<p class="md-search-result__teaser">...'+snip+'...</p>':'')+'</article></a>';
+        list.appendChild(li);
+      });
+      if(results.length===0){var li=document.createElement('li');li.className='md-search-result__item';li.innerHTML='<p style="padding:1rem">Geen resultaten gevonden</p>';list.appendChild(li);}
+    });
+  });
+})();
+</script>
       
     
   <script>var searchInput = document.querySelector('.md-search__input'); var resultsContainer = document.getElementById('results-container'); if (!resultsContainer) {   resultsContainer = document.createElement('div');   resultsContainer.id = 'results-container';   resultsContainer.className = 'md-search__results';   var searchForm = document.querySelector('.md-search__form');   if (searchForm) searchForm.appendChild(resultsContainer); } if (searchInput && resultsContainer) {   SimpleJekyllSearch({     searchInput: searchInput,     resultsContainer: resultsContainer,     json: '../search.json',     limit: 10,     searchResultTemplate: '<div class="md-search__result"><a href="{url}">{title}</a><p>{content}</p></div>',     noResultsText: 'Geen resultaten gevonden'   }); } </script> <style>#theme-toggle{position:fixed;bottom:24px;right:24px;z-index:9999;background:#C8A96E;color:#222;border:none;border-radius:50%;width:48px;height:48px;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);transition:background 0.2s;}#theme-toggle:hover{background:#b8915a;}body.darkmode{background:#1a1a1a!important;color:#eee!important;}body.darkmode .md-main,body.darkmode .md-content,body.darkmode .md-typeset,body.darkmode table,body.darkmode .md-footer,body.darkmode .md-sidebar{background:#222!important;color:#eee!important;}body.darkmode a{color:#ffffff!important;}body.darkmode .md-nav,body.darkmode .md-nav__list,body.darkmode .md-nav__item{background:#222!important;color:#eee!important;}</style><button id="theme-toggle">🌙</button><script>(function(){var btn=document.getElementById('theme-toggle');var dark=localStorage.getItem('darkmode')==='1';function apply(d){document.body.classList.toggle('darkmode',d);btn.textContent=d?'☀️':'🌙';}apply(dark);btn.addEventListener('click',function(){dark=!dark;localStorage.setItem('darkmode',dark?'1':'0');apply(dark);});})();</script></body>

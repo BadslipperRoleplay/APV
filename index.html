@@ -22,7 +22,7 @@
   /* HEADER ALTIJD LIME */
   .md-header, .md-header__inner, .md-header__option, .md-tabs__list, .md-tabs, .md-header__title {
     background: #C8A96E !important;
-    color: #222 !important;
+    color: #fff !important;
   }
 </style>
     
@@ -778,20 +778,39 @@ Zorg ervoor, dat je voor je deelneemt aan Badslipper, kennis hebt genomen van de
         <script src="../../cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
       
         <script src="javascripts/tables.js"></script>
-      <script src="https://unpkg.com/simple-jekyll-search@latest/dist/simple-jekyll-search.min.js"></script>
       <script>
-  var searchInput = document.querySelector('.md-search__input');
-  var resultsContainer = document.getElementById('results-container');
-  if (searchInput && resultsContainer) {
-    SimpleJekyllSearch({
-      searchInput: searchInput,
-      resultsContainer: resultsContainer,
-      json: 'search.json',
-      limit: 10,
-      searchResultTemplate: '<div class="md-search__result"><a href="{url}">{title}</a><p>{content}</p></div>',
-      noResultsText: 'Geen resultaten gevonden'
+(function(){
+  var searchDocs=[];
+  fetch('search/search_index.json').then(function(r){return r.json();}).then(function(data){
+    searchDocs=data.docs||[];
+    var meta=document.querySelector('.md-search-result__meta');
+    if(meta)meta.textContent='Typ om te zoeken';
+  }).catch(function(){});
+  document.addEventListener('DOMContentLoaded',function(){
+    var input=document.querySelector('.md-search__input');
+    var list=document.querySelector('.md-search-result__list');
+    var meta=document.querySelector('.md-search-result__meta');
+    if(!input||!list)return;
+    input.addEventListener('input',function(){
+      var q=(input.value||'').toLowerCase().trim();
+      list.innerHTML='';
+      if(!q){if(meta)meta.textContent='Typ om te zoeken';return;}
+      var results=searchDocs.filter(function(d){
+        return (d.title&&d.title.toLowerCase().indexOf(q)>=0)||(d.text&&d.text.toLowerCase().indexOf(q)>=0);
+      }).slice(0,10);
+      if(meta)meta.textContent=results.length+' resultaten';
+      results.forEach(function(d){
+        var li=document.createElement('li');
+        li.className='md-search-result__item';
+        var snip='';
+        if(d.text){var idx=d.text.toLowerCase().indexOf(q);snip=d.text.substring(Math.max(0,idx-50),idx+100).replace(/</g,'&lt;');}
+        li.innerHTML='<a href="'+d.location+'" class="md-search-result__link" tabindex="-1"><article class="md-search-result__article md-typeset"><h1 class="md-search-result__title">'+d.title+'</h1>'+(snip?'<p class="md-search-result__teaser">...'+snip+'...</p>':'')+'</article></a>';
+        list.appendChild(li);
+      });
+      if(results.length===0){var li=document.createElement('li');li.className='md-search-result__item';li.innerHTML='<p style="padding:1rem">Geen resultaten gevonden</p>';list.appendChild(li);}
     });
-  }
+  });
+})();
 </script>
       
     
