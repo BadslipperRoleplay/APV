@@ -27,3 +27,15 @@
 [data-md-color-scheme=slate] .md-tabs__link {
   color: #ffffff !important;
 }
+
+/* Fix: mobiel hamburgermenu zichtbaar in light mode */
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__link,
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__item--active > .md-nav__link,
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title {
+  color: #222222 !important;
+}
+
+/* Fix: lichte modus nav-items ook zonder data-attribuut (eerste bezoek) */
+.md-nav--primary .md-nav__link {
+  color: var(--md-nav-item-color, var(--md-default-fg-color, #222222)) !important;
+}
