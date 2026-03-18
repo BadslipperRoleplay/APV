@@ -12,7 +12,7 @@
     .git-revision-date-localized-plugin-timeago { display: none }
 }
 
-/* Fix: header title tekst wit maken (overschrijft inline color: #222) */
+/* Fix: header title tekst wit */
 .md-header__title,
 .md-header__topic,
 .md-header__topic:first-child,
@@ -20,38 +20,24 @@
   color: #ffffff !important;
 }
 
-/* Fix: links wit in donkere modus */
+/* Fix: nav-links in dark mode (MkDocs slate) */
 [data-md-color-scheme=slate] .md-nav__link,
 [data-md-color-scheme=slate] .md-nav__item--active > .md-nav__link,
 [data-md-color-scheme=slate] .md-tabs__link {
   color: #ffffff !important;
 }
 
-/* Fix: mobiel hamburgermenu light mode - goudkleurige achtergrond met witte tekst (zelfde als dark mode) */
-body:not([data-md-color-scheme="slate"]) .md-nav--primary,
-body:not([data-md-color-scheme="slate"]) .md-drawer {
-  background: #c8a96e !important;
+/* Fix: nav-links in dark mode (custom .darkmode toggle) */
+body.darkmode .md-nav--primary .md-nav__link,
+body.darkmode .md-nav--primary .md-nav__item,
+body.darkmode .md-nav--primary .md-nav__title {
+  color: #eee !important;
 }
 
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__link,
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__item--active > .md-nav__link,
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title,
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title[for="__drawer"] {
+/* Fix: nav-links in light mode zichtbaar (zowel zonder class als met body:not(.darkmode)) */
+body:not(.darkmode) .md-nav--primary .md-nav__link,
+body:not(.darkmode) .md-nav--primary .md-nav__item,
+body:not(.darkmode) .md-nav--primary .md-nav__title {
   color: #ffffff !important;
-}
-
-/* Fallback zonder data-attribuut (eerste bezoek, nog geen JS) */
-.md-nav--primary {
-  background: #c8a96e !important;
-}
-
-.md-nav--primary .md-nav__link,
-.md-nav--primary .md-nav__title {
-  color: #ffffff !important;
-}
-
-/* Herstel dark mode drawer achtergrond */
-[data-md-color-scheme=slate] .md-nav--primary,
-[data-md-color-scheme=slate] .md-drawer {
-  background: var(--md-default-bg-color) !important;
+    background: #c8a96e !important;
 }
