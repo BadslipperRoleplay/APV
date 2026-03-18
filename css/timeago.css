@@ -1,9 +1,8 @@
 /*
-  timeago output is dynamic, which breaks when you print a page.
+    timeago output is dynamic, which breaks when you print a page.
 
-  This CSS is only included when type: timeago
-  and ensures fallback to type: iso_date when printing.
-
+    This CSS is only included when type: timeago
+    and ensures fallback to type: iso_date when printing.
 */
 
 .git-revision-date-localized-plugin-iso_date { display: none }
@@ -28,14 +27,31 @@
   color: #ffffff !important;
 }
 
-/* Fix: mobiel hamburgermenu zichtbaar in light mode */
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__link,
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__item--active > .md-nav__link,
-body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title {
-  color: #222222 !important;
+/* Fix: mobiel hamburgermenu light mode - goudkleurige achtergrond met witte tekst (zelfde als dark mode) */
+body:not([data-md-color-scheme="slate"]) .md-nav--primary,
+body:not([data-md-color-scheme="slate"]) .md-drawer {
+  background: #c8a96e !important;
 }
 
-/* Fix: lichte modus nav-items ook zonder data-attribuut (eerste bezoek) */
-.md-nav--primary .md-nav__link {
-  color: var(--md-nav-item-color, var(--md-default-fg-color, #222222)) !important;
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__link,
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__item--active > .md-nav__link,
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title,
+body:not([data-md-color-scheme="slate"]) .md-nav--primary .md-nav__title[for="__drawer"] {
+  color: #ffffff !important;
+}
+
+/* Fallback zonder data-attribuut (eerste bezoek, nog geen JS) */
+.md-nav--primary {
+  background: #c8a96e !important;
+}
+
+.md-nav--primary .md-nav__link,
+.md-nav--primary .md-nav__title {
+  color: #ffffff !important;
+}
+
+/* Herstel dark mode drawer achtergrond */
+[data-md-color-scheme=slate] .md-nav--primary,
+[data-md-color-scheme=slate] .md-drawer {
+  background: var(--md-default-bg-color) !important;
 }
